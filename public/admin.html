@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Total Users Count</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: orange;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        p {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Total Users Count</h1>
+        <button id="fetchDataBtn">Fetch Data</button>
+        <p id="totalUsers"></p>
+        
+    </div>
+
+    <script>
+        document.getElementById('fetchDataBtn').addEventListener('click', fetchData);
+
+        function fetchData() {
+            // Fetch total users count
+            fetch('/countUsers')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('totalUsers').textContent = `Total Users: ${data}`;
+                })
+                .catch(error => {
+                    console.error('Error fetching total users count:', error);
+                    document.getElementById('totalUsers').textContent = 'Failed to fetch count';
+                });
+
+           
+        }
+    </script>
+    <script src="index1.js"></script>
+</body>
+</html>
